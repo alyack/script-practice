@@ -1,0 +1,134 @@
+                            #Projects for class practice:
+
+#1- write a script to check if user exist. it should ask for the username and then check the system automatically.
+
+#!/bin/bash
+
+#check users
+
+echo "Please enter the username"
+read U
+
+id $[U] > /dev/null
+
+if
+    [ $? -eq 0 ]
+
+then
+echo "User ${U} exist on this system"
+else
+echo "User ${U} does not exist "
+
+f1
+
+#2-write a script to check if group exist. it should ask for the group name, and then check the system automatically.
+
+#!/bin/bash
+#check group
+
+echo -n "Please enter the group name: "
+read GROUP_NAME
+
+grep $[GROUP_NAME] /etc/group > /dev/null 2<&1
+
+if
+    [ $? -eq 0 ]
+
+then
+echo
+echo "group ${GROUP_NAME} exist on this system"
+echo
+else
+echo
+echo "Group ${GROUP_NAME} does not exist "
+
+fi
+
+#3- write a script to check if file or directory exist. it should ask for the file/directory path and then check the system automatically. If the object  exist, it should say if it a file or a directory.
+#!/bin/bash
+
+### check if item is file or directory ###
+
+echo -n "Please enter the file or directory path: "
+
+read F
+
+if
+    [ -f ${F} ]
+
+then
+
+echo -e "\n $F is a file\n "
+
+elif
+    [ -d $F ]
+then
+echo -e "\n $F is a directory\n "
+
+else
+
+echo -e "\n $F does not exist on this system\n"
+fi
+fi
+
+#4-Write a script that will say if a system is 64 or 32 bit. 
+it should just display a message saying this system is 64 bits or this system is 32 bits
+#!/bin/bash
+
+B=`getconf LONG_BIT`
+
+#echo -e "\n Your system is: $B \n"
+
+if
+   [ $B -q 64]
+then
+echo -e "\n This system is 64 bits \n"
+else
+echo -e "\n This system is 32 bits\n" 
+fi
+
+
+#5- write a script that will check the system and say if it is centos or ubuntu, or debian, ....
+#!/bin/bash
+
+OS=` cat /etc/os-release |grep ^ID= |awk -F'"' '{print$2}'`
+
+if
+   [${OS} ==centos ]
+
+   then
+
+echo -e "\n This system is centos \n"
+
+elif 
+   [ ${OS} == ubuntu ]
+
+then   
+   echo -e "\n This is an ubuntu system\n"
+elif
+   [ ${OS} == debian ]   
+then
+   echo -e "\n This system is debian\n" 
+else
+   echo -e "\n system OS unknown\n"   
+   fi  
+
+
+
+
+
+
+
+
+                          Projects for Interview:
+
+1- Installing sonarqube is a manual task and you need to automate this using a script.
+
+2- The script on jenkins installation need to be executed as user root. 
+-add a condition in there the allow only root users to run the script.
+-Also there are some stepts that they failed, then the script should exit the prompt.
+make the script to exit the prompt if any command in that script failed with an indication of what is wrong or what to check.
+
+
+3- There is an application generating a lot of log messages and this is generating alerts. and when there is an alert, someone needs to login to the system and delete the log manually.
+Have a talk with the app owner and find a way to automate the deletion of logs in the /var/log directory. 
